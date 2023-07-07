@@ -8,23 +8,22 @@
   <link rel="stylesheet" href="./src/style.css">
   <title>Vite + TS</title>
 </head>
-<div id="app">
-  <h1>Juego de las Siete y Media</h1>
-  <input type="radio" checked>
-  <label for="">Modo solitario</label>
-  <input type="radio" disabled>
-  <label for="">Modo grupal</label>
-  <button id="dame">Dame una carta</button>
-  <div>
-    Puntuación:
-    <span id="puntuacion"></span>
-  </div>
-</div>
 
 <body>
   <div id="app">
-
+    <h1>Juego de las Siete y Media</h1>
+    <input type="radio" checked>
+    <label for="">Modo solitario</label>
+    <input type="radio" disabled>
+    <label for="">Modo grupal</label>
+    <button id="dame">Dame una carta</button>
+    <div>
+      Puntuación:
+      <span id="puntuacion"></span>
+    </div>
+    <img src="/images/back.jpg" alt="Carta boca abajo" id="carta">
   </div>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 
