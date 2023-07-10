@@ -10,20 +10,26 @@
 </head>
 
 <body>
-  <div id="app">
+  <div class="container">
+    <div class="mensaje-alerta" id="mensajes"></div>
     <h1>Juego de las Siete y Media</h1>
-    <input type="radio" checked>
-    <label for="">Modo solitario</label>
-    <input type="radio" disabled>
-    <label for="">Modo grupal</label>
-    <button id="dame">Dame una carta</button>
-    <div>
-      Puntuación:
-      <span id="puntuacion"></span>
+    <div class="btn-header">
+      <div class="modo puntuacion-container">
+        Puntuación:
+        <span id="puntuacion"></span>
+      </div>
+      <button class="btn-planto" id="planto">Me planto</button>
     </div>
-    <img src="/images/back.jpg" alt="Carta boca abajo" id="carta">
+    <div class="modo">
+      <input type="radio" checked>
+      <label for="">Modo solitario</label>
+      <input type="radio" disabled>
+      <label for="">Modo grupal</label>
+    </div>
+    <button id="dame" class="modo btn">Dame una carta</button>
+    <img src="/images/back.jpg" alt="Carta boca abajo" id="carta" class="modo img">
+    <button class="btn-comenzar" id="comenzar">Nueva partida</button>
   </div>
-
   <script type="module" src="/src/main.ts"></script>
 </body>
 
