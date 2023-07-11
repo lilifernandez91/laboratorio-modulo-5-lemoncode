@@ -21,7 +21,12 @@ const pideCarta = () => {
     muestraPuntuacion()
     muestraCarta(cartaAleatoria)
     gameOver()
-    if (mensajes && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && puntuacion === 7.5 && mePlanto && mePlanto instanceof HTMLButtonElement) {
+    if (mensajes &&
+        btnPideCarta &&
+        btnPideCarta instanceof HTMLButtonElement &&
+        puntuacion === 7.5 &&
+        mePlanto &&
+        mePlanto instanceof HTMLButtonElement) {
         mensajes.innerHTML = '¡Lo has clavado! ¡Enhorabuena!'
         confetti.default()
         btnPideCarta.disabled = true
@@ -81,7 +86,12 @@ const calcularPuntuacion = (cartaAleatoria: number): void => {
 }
 
 const gameOver = (): void => {
-    if (puntuacion > 7.5 && mensajes && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mePlanto && mePlanto instanceof HTMLButtonElement) {
+    if (puntuacion > 7.5 &&
+        mensajes &&
+        btnPideCarta &&
+        btnPideCarta instanceof HTMLButtonElement &&
+        mePlanto &&
+        mePlanto instanceof HTMLButtonElement) {
         mensajes.innerHTML = 'GAME OVER: LO SENTIMOS, LA PUNTUACION DEBE SER IGUAL O MENOR QUE 7.5'
         btnPideCarta.disabled = true
         btnPideCarta.classList.add('disabled-btn')
@@ -117,7 +127,13 @@ const handleMePlanto = (): void => {
 const handleComenzar = (): void => {
     puntuacion = 0
 
-    if (elementoPuntuacion && elementoCarta && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mensajes && mePlanto && despuesDePlantarse) {
+    if (elementoPuntuacion &&
+        elementoCarta &&
+        btnPideCarta &&
+        btnPideCarta instanceof HTMLButtonElement &&
+        mensajes &&
+        mePlanto instanceof HTMLButtonElement &&
+        despuesDePlantarse) {
         elementoPuntuacion.innerHTML = puntuacion.toString()
         elementoCarta.setAttribute('src', backImageSrc)
         mensajes.innerHTML = ''
@@ -125,6 +141,7 @@ const handleComenzar = (): void => {
         btnPideCarta.classList.remove('disabled-btn')
         mePlanto.classList.remove('disabled-btn')
         despuesDePlantarse.classList.add('despues-de-plantarse')
+        mePlanto.disabled = false;
     }
 }
 
