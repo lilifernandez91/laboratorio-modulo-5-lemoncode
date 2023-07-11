@@ -14,21 +14,19 @@
     <div class="mensaje-alerta" id="mensajes"></div>
     <h1>Juego de las Siete y Media</h1>
     <div class="btn-header">
-      <div class="modo puntuacion-container">
+      <Button class="puntuacion-container">
         Puntuación:
-        <span id="puntuacion"></span>
-      </div>
+        <span id="puntuacion">0</span>
+      </Button>
       <button class="btn-planto" id="planto">Me planto</button>
     </div>
-    <div class="modo">
-      <input type="radio" checked>
-      <label for="">Modo solitario</label>
-      <input type="radio" disabled>
-      <label for="">Modo grupal</label>
+    <button id="dame" class="btn">Dame una carta</button>
+    <div>
+      <img src="/images/back.jpg" alt="Carta boca abajo" id="carta" class="img">
     </div>
-    <button id="dame" class="modo btn">Dame una carta</button>
-    <img src="/images/back.jpg" alt="Carta boca abajo" id="carta" class="modo img">
     <button class="btn-comenzar" id="comenzar">Nueva partida</button>
+    <button class="despues-de-plantarse btn-despues" id="despues-plantarse">¿Qué habría pasado si hubieras seguido
+      jugando?</button>
   </div>
   <script type="module" src="/src/main.ts"></script>
 </body>

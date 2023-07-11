@@ -1,12 +1,12 @@
 import * as confetti from 'canvas-confetti';
 
-const btnDameCarta = document.getElementById('dame')
+const btnPideCarta = document.getElementById('dame')
 const elementoPuntuacion = document.getElementById('puntuacion')
 const elementoCarta = document.getElementById('carta')
 const mensajes = document.getElementById('mensajes')
 const mePlanto = document.getElementById('planto')
 const comenzar = document.getElementById('comenzar')
-
+const despuesDePlantarse = document.getElementById('despues-plantarse')
 
 let puntuacion: number = 0
 
@@ -15,16 +15,19 @@ const cartas: Array<number> = [1, 2, 3, 4, 5, 6, 7, 10, 11, 12]
 const imageSrc = '/images/{carta}-copas.jpg'
 const backImageSrc = '/images/back.jpg'
 
-const dameCarta = () => {
+const pideCarta = () => {
     const cartaAleatoria = generarCartaAleatoria()
     calcularPuntuacion(cartaAleatoria)
     muestraPuntuacion()
     muestraCarta(cartaAleatoria)
     gameOver()
-    if (mensajes && btnDameCarta && btnDameCarta instanceof HTMLButtonElement && puntuacion === 7.5) {
+    if (mensajes && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && puntuacion === 7.5 && mePlanto && mePlanto instanceof HTMLButtonElement) {
         mensajes.innerHTML = '¡Lo has clavado! ¡Enhorabuena!'
         confetti.default()
-        btnDameCarta.disabled = true
+        btnPideCarta.disabled = true
+        btnPideCarta.classList.add('disabled-btn')
+        mePlanto.classList.add('disabled-btn')
+        mePlanto.disabled = true
     }
 }
 
@@ -78,18 +81,27 @@ const calcularPuntuacion = (cartaAleatoria: number): void => {
 }
 
 const gameOver = (): void => {
-    if (puntuacion > 7.5 && mensajes && btnDameCarta && btnDameCarta instanceof HTMLButtonElement) {
+    if (puntuacion > 7.5 && mensajes && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mePlanto && mePlanto instanceof HTMLButtonElement) {
         mensajes.innerHTML = 'GAME OVER: LO SENTIMOS, LA PUNTUACION DEBE SER IGUAL O MENOR QUE 7.5'
-        btnDameCarta.disabled = true
+        btnPideCarta.disabled = true
+        btnPideCarta.classList.add('disabled-btn')
+        mePlanto.classList.add('disabled-btn')
+        mePlanto.disabled = true
     }
 }
 
 const handleMePlanto = (): void => {
-    if (btnDameCarta && btnDameCarta instanceof HTMLButtonElement && mensajes) {
-        btnDameCarta.disabled = true
+    if (btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mensajes && mePlanto && despuesDePlantarse) {
+        btnPideCarta.disabled = true
+        btnPideCarta.classList.add('disabled-btn')
+        mePlanto.classList.add('disabled-btn')
+        despuesDePlantarse.classList.remove('despues-de-plantarse')
         if (puntuacion === 0) {
             mensajes.innerHTML = 'Por favor, pide una carta'
-            btnDameCarta.disabled = false
+            btnPideCarta.disabled = false
+            btnPideCarta.classList.remove('disabled-btn')
+            mePlanto.classList.remove('disabled-btn')
+            despuesDePlantarse.classList.add('despues-de-plantarse')
         }
     } if (mensajes) {
         if (puntuacion >= 0.5 && puntuacion < 4) {
@@ -105,19 +117,31 @@ const handleMePlanto = (): void => {
 const handleComenzar = (): void => {
     puntuacion = 0
 
-    if (elementoPuntuacion && elementoCarta && btnDameCarta && btnDameCarta instanceof HTMLButtonElement && mensajes) {
+    if (elementoPuntuacion && elementoCarta && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mensajes && mePlanto && despuesDePlantarse) {
         elementoPuntuacion.innerHTML = puntuacion.toString()
         elementoCarta.setAttribute('src', backImageSrc)
-        btnDameCarta.disabled = false
         mensajes.innerHTML = ''
+        btnPideCarta.disabled = false
+        btnPideCarta.classList.remove('disabled-btn')
+        mePlanto.classList.remove('disabled-btn')
+        despuesDePlantarse.classList.add('despues-de-plantarse')
+    }
+}
+
+const handledespuesDePlantarse = () => {
+    if (despuesDePlantarse && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mensajes) {
+        despuesDePlantarse.classList.remove('despues-de-plantarse')
+        btnPideCarta.disabled = false
+        btnPideCarta.classList.remove('disabled-btn')
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (mePlanto && btnDameCarta && comenzar) {
+    if (mePlanto && btnPideCarta && comenzar && despuesDePlantarse) {
         mePlanto.addEventListener('click', handleMePlanto)
-        btnDameCarta.addEventListener('click', dameCarta)
+        btnPideCarta.addEventListener('click', pideCarta)
         comenzar.addEventListener('click', handleComenzar)
+        despuesDePlantarse.addEventListener('click', handledespuesDePlantarse)
     }
 })
 
