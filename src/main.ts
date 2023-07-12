@@ -145,7 +145,7 @@ const handleComenzar = (): void => {
     }
 }
 
-const handledespuesDePlantarse = () => {
+const handledespuesDePlantarse = (): void => {
     if (despuesDePlantarse && btnPideCarta && btnPideCarta instanceof HTMLButtonElement && mensajes) {
         despuesDePlantarse.classList.remove('despues-de-plantarse')
         btnPideCarta.disabled = false
